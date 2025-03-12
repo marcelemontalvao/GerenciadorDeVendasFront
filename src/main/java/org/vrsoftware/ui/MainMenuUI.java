@@ -2,6 +2,7 @@ package org.vrsoftware.ui;
 
 import org.vrsoftware.ui.clients.MainMenuClientsUI;
 import org.vrsoftware.ui.products.MainMenuProductsUI;
+import org.vrsoftware.ui.sales.MainMenuSalesUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,6 +38,13 @@ public class MainMenuUI extends JFrame {
         gbc.gridy = 1;
         formPanel.add(btnProducts, gbc);
 
+        JButton btnSales = new JButton("Gerenciar Vendas");
+        btnSales.addActionListener(e -> openMainMenuSalesUi());
+        btnSales.setMargin(new Insets(5, 15, 5, 15));
+        gbc.weightx = 1.0;
+        gbc.gridy = 2;
+        formPanel.add(btnSales, gbc);
+
         GridBagConstraints mainGbc = new GridBagConstraints();
         mainGbc.weighty = 1.0;
         mainPanel.add(formPanel, mainGbc);
@@ -55,6 +63,12 @@ public class MainMenuUI extends JFrame {
     private void openMainMenuProductsUi() {
         MainMenuProductsUI productsUI = new MainMenuProductsUI();
         productsUI.setVisible(true);
+        dispose();
+    }
+
+    private void openMainMenuSalesUi() {
+        MainMenuSalesUI salesUI = new MainMenuSalesUI();
+        salesUI.setVisible(true);
         dispose();
     }
 

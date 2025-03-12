@@ -1,7 +1,6 @@
 package org.vrsoftware.ui.clients;
 
 import org.vrsoftware.ui.utils.BackToClientsMenu;
-import org.vrsoftware.ui.utils.BackToMenu;
 
 import javax.swing.*;
 import java.awt.*;

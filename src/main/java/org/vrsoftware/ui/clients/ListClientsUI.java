@@ -13,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ListClientsUI extends JFrame {
+
     private JTable table;
     private DefaultTableModel tableModel;
 

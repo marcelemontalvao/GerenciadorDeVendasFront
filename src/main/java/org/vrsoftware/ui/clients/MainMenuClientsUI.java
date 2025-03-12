@@ -16,7 +16,7 @@ public class MainMenuClientsUI extends JFrame {
 
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new GridBagLayout());
-        formPanel.setPreferredSize(new Dimension(300, 200));
+        formPanel.setPreferredSize(new Dimension(400, 300));
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);

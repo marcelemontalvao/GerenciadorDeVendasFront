@@ -16,7 +16,7 @@ public class UpdateProductUI extends JFrame {
 
     private JTextField txtId;
     private JTextField txtDescricao;
-    private JTextField txtPreco;
+    private JTextField bigDecimalPreco;
     private JButton btnAtualizar;
 
     public UpdateProductUI() {
@@ -55,9 +55,9 @@ public class UpdateProductUI extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 2;
         formPanel.add(new JLabel("Preço:"), gbc);
-        txtPreco = new JTextField(20);
+        bigDecimalPreco = new JTextField(20);
         gbc.gridx = 1;
-        formPanel.add(txtPreco, gbc);
+        formPanel.add(bigDecimalPreco, gbc);
 
         btnAtualizar = new JButton("Atualizar Produto");
         gbc.gridx = 0;
@@ -89,7 +89,7 @@ public class UpdateProductUI extends JFrame {
     private void updateProduct() {
         String idStr = txtId.getText().trim();
         String description = txtDescricao.getText().trim();
-        String price = txtPreco.getText().trim();
+        String price = bigDecimalPreco.getText().trim();
 
         if (idStr.isEmpty() || description.isEmpty() || price.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos.", "Atenção", JOptionPane.WARNING_MESSAGE);
