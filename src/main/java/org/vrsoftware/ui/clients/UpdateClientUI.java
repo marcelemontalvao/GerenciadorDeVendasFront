@@ -1,7 +1,7 @@
 package org.vrsoftware.ui.clients;
 
 import org.vrsoftware.ui.utils.BackToClientsMenu;
-import org.vrsoftware.ui.utils.BackToMenu;
+import org.vrsoftware.ui.utils.FormUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,25 +12,23 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class UpdateClientUI extends JFrame {
 
     private JTextField txtId;
-    private JTextField txtNome;
-    private JTextField txtLimiteCompra;
-    private JTextField txtDiaFechamento;
-    private JButton btnAtualizar;
+    private JTextField txtName;
+    private JTextField txtBuyLimit;
+    private JTextField txtClosureDay;
+    private JButton btnUpdate;
 
     public UpdateClientUI() {
         initComponents();
     }
 
     private void initComponents() {
-
-        setTitle("Atualizar Cliente");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
+        configureWindow(this,"Atualizar Cliente", 800, 600);
         JPanel mainPanel = new JPanel(new GridBagLayout());
 
         JPanel formPanel = new JPanel();
@@ -39,41 +37,23 @@ public class UpdateClientUI extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.NONE;
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        formPanel.add(new JLabel("ID:"), gbc);
-        txtId = new JTextField(20);
-        gbc.gridx = 1;
-        formPanel.add(txtId, gbc);
+        FormUtils.addLabelToForm(formPanel,"ID:", gbc, 0, 0);
+        FormUtils.addTextFieldToForm(formPanel, txtId, 20, gbc, 1);
 
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        formPanel.add(new JLabel("Nome:"), gbc);
-        txtNome = new JTextField(20);
-        gbc.gridx = 1;
-        formPanel.add(txtNome, gbc);
+        FormUtils.addLabelToForm(formPanel,"Nome:", gbc, 0, 1);
+        FormUtils.addTextFieldToForm(formPanel, txtName, 20, gbc, 1);
 
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        formPanel.add(new JLabel("Limite Compra:"), gbc);
-        txtLimiteCompra = new JTextField(20);
-        gbc.gridx = 1;
-        formPanel.add(txtLimiteCompra, gbc);
+        FormUtils.addLabelToForm(formPanel,"Limite Compra:", gbc, 0, 2);
+        FormUtils.addTextFieldToForm(formPanel, txtBuyLimit, 20, gbc, 1);
 
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        formPanel.add(new JLabel("Dia Fechamento:"), gbc);
-        txtDiaFechamento = new JTextField(20);
-        gbc.gridx = 1;
-        formPanel.add(txtDiaFechamento, gbc);
+        FormUtils.addLabelToForm(formPanel,"Dia Fechamento:", gbc, 0, 3);
+        FormUtils.addTextFieldToForm(formPanel, txtClosureDay, 20, gbc, 1);
 
-        btnAtualizar = new JButton("Atualizar Cliente");
-        gbc.gridx = 0;
-        gbc.gridy = 4;
+        btnUpdate = new JButton("Atualizar Cliente");
         gbc.gridwidth = 2;
-        formPanel.add(btnAtualizar, gbc);
+        FormUtils.addButtonToForm(formPanel,btnUpdate,gbc,0,4,0);
 
-        btnAtualizar.addActionListener(new ActionListener() {
+        btnUpdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 updateClient();
@@ -81,37 +61,33 @@ public class UpdateClientUI extends JFrame {
         });
 
         BackToClientsMenu backToMenu = new BackToClientsMenu(this);
-        gbc.gridy++;
-        gbc.weightx = 1;
-        gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.BELOW_BASELINE_TRAILING;
-        formPanel.add(backToMenu, gbc);
+        FormUtils.addButtonToForm(formPanel,backToMenu,gbc,1,5,1);
 
         mainPanel.add(formPanel, new GridBagConstraints());
 
         add(mainPanel);
-        setVisible(true);
-        setResizable(false);
+        showWindow(this);
     }
 
     private void updateClient() {
         String idStr = txtId.getText().trim();
-        String nome = txtNome.getText().trim();
-        String limiteCompraStr = txtLimiteCompra.getText().trim();
-        String diaFechamentoStr = txtDiaFechamento.getText().trim();
+        String name = txtName.getText().trim();
+        String buyLimitStr = txtBuyLimit.getText().trim();
+        String closureDayStr = txtClosureDay.getText().trim();
 
-        if (idStr.isEmpty() || nome.isEmpty() || limiteCompraStr.isEmpty() || diaFechamentoStr.isEmpty()) {
+        if (idStr.isEmpty() || name.isEmpty() || buyLimitStr.isEmpty() || closureDayStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos.", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         try {
             int id = Integer.parseInt(idStr);
-            BigDecimal limiteCompra = BigDecimal.valueOf(Double.parseDouble(limiteCompraStr));
-            int diaFechamento = Integer.parseInt(diaFechamentoStr);
+            BigDecimal buyLimit = BigDecimal.valueOf(Double.parseDouble(buyLimitStr));
+            int closureDay = Integer.parseInt(closureDayStr);
 
             String jsonBody = String.format("{\"nome\": \"%s\", \"limite_compra\": \"%s\", \"dia_fechamento\": %d}",
-                    nome, limiteCompra, diaFechamento);
+                    name, buyLimit, closureDay);
 
             sendPut("http://localhost:8080/clientes/" + id, jsonBody);
         } catch (NumberFormatException ex) {

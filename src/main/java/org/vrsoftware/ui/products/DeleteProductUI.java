@@ -14,6 +14,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class DeleteProductUI extends JFrame {
 
     private JTextField txtId;
@@ -24,11 +27,7 @@ public class DeleteProductUI extends JFrame {
     }
 
     private void initComponents() {
-        setTitle("Deletar Produto");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
+        configureWindow(this, "Deletar Produto", 800, 600);
         JPanel mainPanel = new JPanel(new GridBagLayout());
 
         JPanel formPanel = new JPanel();
@@ -67,8 +66,7 @@ public class DeleteProductUI extends JFrame {
         mainPanel.add(formPanel, new GridBagConstraints());
 
         add(mainPanel);
-        setVisible(true);
-        setResizable(false);
+        showWindow(this);
     }
 
     private void deleteProduct() {

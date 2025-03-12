@@ -11,8 +11,8 @@ public class BackToProductsMenu extends JPanel {
     public BackToProductsMenu(JFrame currentFrame) {
         setLayout(new FlowLayout());
 
-        JButton btnVoltar = new JButton("Voltar ao Menu");
-        btnVoltar.addActionListener(new ActionListener() {
+        JButton btnBack = new JButton("Voltar ao Menu");
+        btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainMenuProductsUI menuUi = new MainMenuProductsUI();
@@ -21,6 +21,6 @@ public class BackToProductsMenu extends JPanel {
             }
         });
 
-        add(btnVoltar);
+        add(btnBack);
     }
 }

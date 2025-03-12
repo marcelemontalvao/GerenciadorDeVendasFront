@@ -1,23 +1,22 @@
 package org.vrsoftware.ui.utils;
 
-import org.vrsoftware.ui.MainMenuUI;
+import org.vrsoftware.ui.sales.MainMenuSalesUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BackToMenu extends JPanel {
-    public BackToMenu(JFrame currentFrame) {
+public class BackToSalesMenu extends JPanel {
+    public BackToSalesMenu(JFrame currentFrame) {
         setLayout(new FlowLayout());
 
-        JButton btnBack = new JButton("Voltar ao Menu Principal");
+        JButton btnBack = new JButton("Voltar ao Menu");
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainMenuUI menuUi = new MainMenuUI();
+                MainMenuSalesUI menuUi = new MainMenuSalesUI();
                 menuUi.setVisible(true);
-
                 currentFrame.dispose();
             }
         });

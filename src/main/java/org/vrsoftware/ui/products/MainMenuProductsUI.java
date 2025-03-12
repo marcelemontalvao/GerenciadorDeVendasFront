@@ -5,18 +5,19 @@ import org.vrsoftware.ui.utils.BackToMenu;
 import javax.swing.*;
 import java.awt.*;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class MainMenuProductsUI extends JFrame {
     public MainMenuProductsUI() {
-        setTitle("Menu dos Produtos");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        configureWindow(this, "Menu dos Produtos", 800, 600);
         setLayout(new BorderLayout());
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
 
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new GridBagLayout());
-        formPanel.setPreferredSize(new Dimension(300, 200));
+        formPanel.setPreferredSize(new Dimension(300, 500));
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -61,8 +62,7 @@ public class MainMenuProductsUI extends JFrame {
         mainPanel.add(formPanel, mainGbc);
 
         add(mainPanel);
-        setVisible(true);
-        setResizable(false);
+        showWindow(this);
     }
 
     private void openCreateProductUi() {

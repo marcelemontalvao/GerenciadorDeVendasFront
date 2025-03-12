@@ -11,10 +11,13 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class CreateProductUI extends JFrame {
 
     private JTextField txtDescricao;
-    private JTextField txtPreco;
+    private JTextField bigDecimalPreco;
     private JButton btnCriar;
 
     public CreateProductUI() {
@@ -22,10 +25,7 @@ public class CreateProductUI extends JFrame {
     }
 
     private void initComponents() {
-        setTitle("Criar Produto");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        configureWindow(this, "Criar Produto", 800, 600);
         setLayout(new GridBagLayout());
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -46,9 +46,9 @@ public class CreateProductUI extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 1;
         formPanel.add(new JLabel("Preço:"), gbc);
-        txtPreco = new JTextField(30);
+        bigDecimalPreco = new JTextField(30);
         gbc.gridx = 1;
-        formPanel.add(txtPreco, gbc);
+        formPanel.add(bigDecimalPreco, gbc);
 
         btnCriar = new JButton("Criar Produto");
         gbc.gridx = 0;
@@ -73,13 +73,12 @@ public class CreateProductUI extends JFrame {
         mainPanel.add(formPanel, new GridBagConstraints());
 
         add(mainPanel);
-        setVisible(true);
-        setResizable(false);
+        showWindow(this);
     }
 
     private void createProduct() {
         String description = txtDescricao.getText().trim();
-        String price = txtPreco.getText().trim();
+        String price = bigDecimalPreco.getText().trim();
 
         if (description.isEmpty() || price.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos.", "Atenção", JOptionPane.WARNING_MESSAGE);
