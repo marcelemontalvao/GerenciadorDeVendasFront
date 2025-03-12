@@ -19,7 +19,7 @@ import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
 
 public class DeleteClientUI extends JFrame {
 
-    private JTextField txtId;
+    private JTextField txtId = new JTextField();
     private JButton btnDelete;
 
     public DeleteClientUI() {

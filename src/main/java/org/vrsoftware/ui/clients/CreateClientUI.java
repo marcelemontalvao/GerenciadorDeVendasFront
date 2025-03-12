@@ -16,9 +16,9 @@ import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
 
 public class CreateClientUI extends JFrame {
 
-    private JTextField txtName;
-    private JTextField txtBuyLimit;
-    private JTextField txtClosureDay;
+    private JTextField txtName = new JTextField(); ;
+    private JTextField txtBuyLimit = new JTextField(); ;
+    private JTextField txtClosureDay = new JTextField(); ;
     private JButton btnCreate;
 
     public CreateClientUI() {

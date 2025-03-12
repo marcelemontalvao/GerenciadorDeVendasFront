@@ -17,10 +17,10 @@ import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
 
 public class UpdateClientUI extends JFrame {
 
-    private JTextField txtId;
-    private JTextField txtName;
-    private JTextField txtBuyLimit;
-    private JTextField txtClosureDay;
+    private JTextField txtId = new JTextField();
+    private JTextField txtName = new JTextField();
+    private JTextField txtBuyLimit = new JTextField();
+    private JTextField txtClosureDay = new JTextField();
     private JButton btnUpdate;
 
     public UpdateClientUI() {

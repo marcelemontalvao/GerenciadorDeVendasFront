@@ -14,7 +14,7 @@ public class FormUtils {
     }
 
     public static void addTextFieldToForm(JPanel formPanel, JTextField textField, Integer columns, GridBagConstraints gbc, int gridX) {
-        textField = new JTextField(columns);
+        textField.setColumns(columns);
         gbc.gridx = gridX;
         formPanel.add(textField, gbc);
     }
