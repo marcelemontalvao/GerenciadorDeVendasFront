@@ -5,11 +5,12 @@ import org.vrsoftware.ui.utils.BackToMenu;
 import javax.swing.*;
 import java.awt.*;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class MainMenuSalesUI extends JFrame {
     public MainMenuSalesUI() {
-        setTitle("Menu das Vendas");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        configureWindow(this, "Menu das Vendas", 800, 600);
         setLayout(new BorderLayout());
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -25,18 +26,24 @@ public class MainMenuSalesUI extends JFrame {
         JButton btnSales = new JButton("Criar Venda");
         JButton btnSales2 = new JButton("Listar Vendas");
         JButton btnSales3 = new JButton("Atualizar Venda");
-        JButton btnSales4 = new JButton("Deletar Venda");
-        JButton btnSales5 = new JButton("Filtrar Vendas");
-        JButton btnSales6 = new JButton("Visualizar Vendas Por Clientes");
-        JButton btnSales7 = new JButton("Visualizar Vendas Por Produtos");
+        JButton btnSales4 = new JButton("Atualizar a Quantidade de Um Item");
+        JButton btnSales5 = new JButton("Deletar Venda");
+        JButton btnSales6 = new JButton("Filtrar Vendas");
+        JButton btnSales7 = new JButton("Visualizar Vendas Por Clientes");
+        JButton btnSales8 = new JButton("Visualizar Vendas Por Produtos");
+        JButton btnSales9 = new JButton("Listar Venda Por Id");
+        JButton btnSales10 = new JButton("Excluir Produtos da Venda");
 
         btnSales.addActionListener(e -> openCreateSalesUi());
         btnSales2.addActionListener(e -> openListSalesUI());
         btnSales3.addActionListener(e -> openUpdateSalesUI());
-        btnSales4.addActionListener(e -> openDeleteSalesUI());
-        btnSales5.addActionListener(e -> openFilterSalesUI());
-        btnSales6.addActionListener(e -> openReportSalesClientUI());
-        btnSales7.addActionListener(e -> openReportSalesProductUI());
+        btnSales4.addActionListener(e -> openUpdateQuantityProductUI());
+        btnSales5.addActionListener(e -> openDeleteSalesUI());
+        btnSales6.addActionListener(e -> openFilterSalesUI());
+        btnSales7.addActionListener(e -> openReportSalesClientUI());
+        btnSales8.addActionListener(e -> openReportSalesProductUI());
+        btnSales9.addActionListener(e -> openSalesDetailUI());
+        btnSales10.addActionListener(e -> openDeleteSalesItemUI());
 
         btnSales.setMargin(new Insets(5, 15, 5, 15));
         btnSales2.setMargin(new Insets(5, 15, 5, 15));
@@ -45,6 +52,9 @@ public class MainMenuSalesUI extends JFrame {
         btnSales5.setMargin(new Insets(5, 15, 5, 15));
         btnSales6.setMargin(new Insets(5, 15, 5, 15));
         btnSales7.setMargin(new Insets(5, 15, 5, 15));
+        btnSales8.setMargin(new Insets(5, 15, 5, 15));
+        btnSales9.setMargin(new Insets(5, 15, 5, 15));
+        btnSales10.setMargin(new Insets(5, 15, 5, 15));
 
         gbc.weightx = 1.0;
         gbc.gridy = 0;
@@ -68,8 +78,17 @@ public class MainMenuSalesUI extends JFrame {
         gbc.gridy = 6;
         formPanel.add(btnSales7, gbc);
 
-        BackToMenu backToMenu = new BackToMenu(this);
         gbc.gridy = 7;
+        formPanel.add(btnSales8, gbc);
+
+        gbc.gridy = 8;
+        formPanel.add(btnSales9, gbc);
+
+        gbc.gridy = 9;
+        formPanel.add(btnSales10, gbc);
+
+        BackToMenu backToMenu = new BackToMenu(this);
+        gbc.gridy = 10;
         gbc.anchor = GridBagConstraints.BELOW_BASELINE_TRAILING;
         gbc.fill = GridBagConstraints.NONE;
         formPanel.add(backToMenu, gbc);
@@ -79,8 +98,7 @@ public class MainMenuSalesUI extends JFrame {
         mainPanel.add(formPanel, mainGbc);
 
         add(mainPanel);
-        setVisible(true);
-        setResizable(false);
+        showWindow(this);
     }
 
     private void openCreateSalesUi() {
@@ -101,11 +119,24 @@ public class MainMenuSalesUI extends JFrame {
         dispose();
     }
 
+    private void openUpdateQuantityProductUI() {
+        UpdateQuantityProductSalesUI sale = new UpdateQuantityProductSalesUI();
+        sale.setVisible(true);
+        dispose();
+    }
+
     private void openDeleteSalesUI() {
         DeleteSalesUI sales = new DeleteSalesUI();
         sales.setVisible(true);
         dispose();
     }
+
+    private void openDeleteSalesItemUI() {
+        DeleteSalesItemUI item = new DeleteSalesItemUI();
+        item.setVisible(true);
+        dispose();
+    }
+
 
     private void openFilterSalesUI() {
         FilterSalesUI sales = new FilterSalesUI();
@@ -121,6 +152,12 @@ public class MainMenuSalesUI extends JFrame {
 
     private void openReportSalesProductUI() {
         SalesReportProductUI sales = new SalesReportProductUI();
+        sales.setVisible(true);
+        dispose();
+    }
+
+    private void openSalesDetailUI() {
+        SalesDetailUI sales = new SalesDetailUI();
         sales.setVisible(true);
         dispose();
     }

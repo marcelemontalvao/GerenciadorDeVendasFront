@@ -14,6 +14,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.vrsoftware.ui.utils.BackToSalesMenu;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class FilterSalesUI extends JFrame {
     private JTextField txtClientId, txtStartDate, txtEndDate, txtProdutoId;
     private JTable salesTable;
@@ -25,11 +28,7 @@ public class FilterSalesUI extends JFrame {
     }
 
     private void initComponents() {
-        setTitle("Filtrar Vendas");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
+        configureWindow(this, "Filtrar Vendas", 800, 600);
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbcMain = new GridBagConstraints();
@@ -98,9 +97,8 @@ public class FilterSalesUI extends JFrame {
 
         mainPanel.add(formPanel, gbcMain);
         add(mainPanel);
-        setVisible(true);
+        showWindow(this);
     }
-
 
     private void filterSales() {
         try {

@@ -15,6 +15,9 @@ import java.util.regex.Pattern;
 import org.json.JSONObject;
 import org.vrsoftware.ui.utils.BackToSalesMenu;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class SalesReportClientUI extends JFrame {
     private JTextField txtStartDate, txtEndDate;
     private JTable reportTable;
@@ -26,10 +29,7 @@ public class SalesReportClientUI extends JFrame {
     }
 
     private void initComponents() {
-        setTitle("Relatório de Vendas por Cliente");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        configureWindow(this, "Relatório de Vendas por Cliente", 800, 600);
         setLayout(new BorderLayout());
 
         JPanel formPanel = new JPanel(new FlowLayout());
@@ -45,7 +45,6 @@ public class SalesReportClientUI extends JFrame {
         formPanel.add(lblEndDate);
         formPanel.add(txtEndDate);
         formPanel.add(btnBuscar);
-        //formPanel.add(backToMenu);
 
         tableModel = new DefaultTableModel(new Object[]{"ID", "Nome", "Limite de Compra", "Dia de Fechamento", "Total de Vendas"}, 0);
         reportTable = new JTable(tableModel);
@@ -58,14 +57,14 @@ public class SalesReportClientUI extends JFrame {
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                buscarRelatorio();
+                searchReport();
             }
         });
 
-        setVisible(true);
+        showWindow(this);
     }
 
-    private void buscarRelatorio() {
+    private void searchReport() {
         String startDate = txtStartDate.getText().trim();
         String endDate = txtEndDate.getText().trim();
 
@@ -100,7 +99,6 @@ public class SalesReportClientUI extends JFrame {
         tableModel.setRowCount(0);
         JSONObject reportData = new JSONObject(jsonResponse);
 
-        // Padrão regex para extrair as informações do texto
         Pattern pattern = Pattern.compile("id=(\\d+), nome=(\\w+), limiteCompra=([\\d.]+), diaFechamento=(\\d+)");
 
         for (String clientKey : reportData.keySet()) {

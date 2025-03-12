@@ -7,11 +7,12 @@ import org.vrsoftware.ui.sales.MainMenuSalesUI;
 import javax.swing.*;
 import java.awt.*;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class MainMenuUI extends JFrame {
     public MainMenuUI() {
-        setTitle("Menu Principal");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        configureWindow(this, "Menu Principal",800, 600);
         setLayout(new BorderLayout());
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -50,8 +51,7 @@ public class MainMenuUI extends JFrame {
         mainPanel.add(formPanel, mainGbc);
 
         add(mainPanel);
-        setVisible(true);
-        setResizable(false);
+        showWindow(this);
     }
 
     private void openMainMenuClientsUi() {

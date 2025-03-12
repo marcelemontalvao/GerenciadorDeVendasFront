@@ -5,11 +5,12 @@ import org.vrsoftware.ui.utils.BackToMenu;
 import javax.swing.*;
 import java.awt.*;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class MainMenuClientsUI extends JFrame {
     public MainMenuClientsUI() {
-        setTitle("Menu dos Clientes");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        configureWindow(this, "Menu dos Clientes", 800, 600);
         setLayout(new BorderLayout());
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -61,8 +62,7 @@ public class MainMenuClientsUI extends JFrame {
         mainPanel.add(formPanel, mainGbc);
 
         add(mainPanel);
-        setVisible(true);
-        setResizable(false);
+        showWindow(this);
     }
 
     private void openCreateClientUI() {

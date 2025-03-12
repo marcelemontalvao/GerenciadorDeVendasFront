@@ -16,6 +16,9 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class SalesReportProductUI extends JFrame {
     private JTextField txtStartDate, txtEndDate;
     private JTable reportTable;
@@ -27,10 +30,7 @@ public class SalesReportProductUI extends JFrame {
     }
 
     private void initComponents() {
-        setTitle("Relatório de Vendas por Produto");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        configureWindow(this, "Relatório de Vendas por Produto", 800, 600);
         setLayout(new BorderLayout());
 
         JPanel formPanel = new JPanel(new FlowLayout());
@@ -62,7 +62,7 @@ public class SalesReportProductUI extends JFrame {
             }
         });
 
-        setVisible(true);
+        showWindow(this);
     }
 
     private void searchReport() {

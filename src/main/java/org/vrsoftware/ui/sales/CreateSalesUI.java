@@ -13,6 +13,9 @@ import java.net.URL;
 import java.util.*;
 import java.util.List;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class CreateSalesUI extends JFrame {
 
     private JTextField txtClientId;
@@ -28,12 +31,8 @@ public class CreateSalesUI extends JFrame {
     }
 
     private void initComponents() {
-        setTitle("Criar Venda");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        configureWindow(this, "Criar Venda", 800, 600);
         setLayout(new GridBagLayout());
-        setResizable(false);
 
         itens = new ArrayList<>();
 
@@ -107,7 +106,7 @@ public class CreateSalesUI extends JFrame {
 
         mainPanel.add(formPanel, gbcMain);
         add(mainPanel);
-        setVisible(true);
+        showWindow(this);
     }
 
     private void addItem() {

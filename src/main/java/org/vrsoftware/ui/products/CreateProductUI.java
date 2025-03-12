@@ -11,6 +11,9 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class CreateProductUI extends JFrame {
 
     private JTextField txtDescricao;
@@ -22,10 +25,7 @@ public class CreateProductUI extends JFrame {
     }
 
     private void initComponents() {
-        setTitle("Criar Produto");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        configureWindow(this, "Criar Produto", 800, 600);
         setLayout(new GridBagLayout());
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -73,8 +73,7 @@ public class CreateProductUI extends JFrame {
         mainPanel.add(formPanel, new GridBagConstraints());
 
         add(mainPanel);
-        setVisible(true);
-        setResizable(false);
+        showWindow(this);
     }
 
     private void createProduct() {

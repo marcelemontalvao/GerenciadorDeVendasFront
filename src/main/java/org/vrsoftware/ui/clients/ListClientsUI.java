@@ -12,17 +12,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class ListClientsUI extends JFrame {
 
     private JTable table;
     private DefaultTableModel tableModel;
 
     public ListClientsUI() {
-        setTitle("Lista de Clientes");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
+        configureWindow(this, "Lista de Clientes",800, 600);
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         tableModel = new DefaultTableModel(new String[]{"ID", "Nome", "Limite de Compra", "Dia Fechamento"}, 0);
@@ -34,8 +33,7 @@ public class ListClientsUI extends JFrame {
         mainPanel.add(backToMenu, BorderLayout.SOUTH);
 
         add(mainPanel);
-        setVisible(true);
-
+        showWindow(this);
         fetchClients();
     }
 

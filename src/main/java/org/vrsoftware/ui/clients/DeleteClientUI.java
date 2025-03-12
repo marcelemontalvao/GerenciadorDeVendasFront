@@ -1,6 +1,7 @@
 package org.vrsoftware.ui.clients;
 
 import org.vrsoftware.ui.utils.BackToClientsMenu;
+import org.vrsoftware.ui.utils.FormUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,21 +14,20 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static org.vrsoftware.ui.utils.WindowUtils.configureWindow;
+import static org.vrsoftware.ui.utils.WindowUtils.showWindow;
+
 public class DeleteClientUI extends JFrame {
 
     private JTextField txtId;
-    private JButton btnDeletar;
+    private JButton btnDelete;
 
     public DeleteClientUI() {
         initComponents();
     }
 
     private void initComponents() {
-        setTitle("Deletar Cliente");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
+        configureWindow(this, "Deletar Cliente",800, 600);
         JPanel mainPanel = new JPanel(new GridBagLayout());
 
         JPanel formPanel = new JPanel();
@@ -36,20 +36,14 @@ public class DeleteClientUI extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.NONE;
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        formPanel.add(new JLabel("ID do Cliente:"), gbc);
-        txtId = new JTextField(20);
-        gbc.gridx = 1;
-        formPanel.add(txtId, gbc);
+        FormUtils.addLabelToForm(formPanel,"ID do Cliente:", gbc, 0, 0);
+        FormUtils.addTextFieldToForm(formPanel, txtId, 20, gbc, 1);
 
-        btnDeletar = new JButton("Deletar Cliente");
-        gbc.gridx = 0;
-        gbc.gridy = 1;
+        btnDelete = new JButton("Deletar Cliente");
+        FormUtils.addButtonToForm(formPanel, btnDelete,gbc,0,1, 0);
         gbc.gridwidth = 2;
-        formPanel.add(btnDeletar, gbc);
 
-        btnDeletar.addActionListener(new ActionListener() {
+        btnDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 deleteClient();
@@ -57,17 +51,14 @@ public class DeleteClientUI extends JFrame {
         });
 
         BackToClientsMenu backToMenu = new BackToClientsMenu(this);
-        gbc.gridy++;
-        gbc.weightx = 1;
-        gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.BELOW_BASELINE_TRAILING;
         formPanel.add(backToMenu, gbc);
+        FormUtils.addButtonToForm(formPanel, backToMenu, gbc, 0, 2, 1);
 
         mainPanel.add(formPanel, new GridBagConstraints());
 
         add(mainPanel);
-        setVisible(true);
-        setResizable(false);
+        showWindow(this);
     }
 
     private void deleteClient() {
